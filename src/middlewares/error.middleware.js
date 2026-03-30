@@ -12,13 +12,15 @@ const errorHandler = (err, req, res, next) => {
         });
     }
 
-    return res.status(500).json({
-        "timestamp": new Date().toISOString(),
-        "status": 500,
-        "error": "Internal Server Error",
+    const status = err.statusCode || 500;
+    const message = err.statusCode ? err.message : "Internal Server Error";
+    return res.status(status).json({
+        message,
+        error: err.name || "Server Error",
         "path": req.path,
-        message: err.message
+        "timestamp": new Date().toISOString()
     })
+
 }
 
 export default errorHandler;
