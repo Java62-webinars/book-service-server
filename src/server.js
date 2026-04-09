@@ -1,11 +1,13 @@
 import express from 'express';
 import mongoose from "mongoose";
 import config from "./configuration/config.js";
-import postRoutes from "./routes/post.routes.js";
+import postRoutes from "./routes/books.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
 import DatabaseConnectionError from "./errors/DatabaseConnectionError.js";
 import {setDbConnectionError} from "./state/db.state.js";
 import dbGuard from "./middlewares/db-guard.middleware.js";
+import booksRoutes from "./routes/books.routes.js";
+import orderRoutes from "./routes/orders.routes.js";
 
 const app = express();
 
@@ -15,7 +17,8 @@ app.get('/health', (req, res) => {
     database: mongoose.connection.readyState === 1 ? "connected" : "disconnected" });
 })
 app.use(dbGuard);
-app.use('/forum', postRoutes)
+app.use('/book-shop', booksRoutes);
+app.use('/book-shop', orderRoutes)
 
 app.use(errorHandler)
 
