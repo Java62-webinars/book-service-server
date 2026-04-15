@@ -45,6 +45,10 @@ const orderItemSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 1,
+        validate: {
+            validator: Number.isInteger,
+            message: 'Qty must be an integer',
+        },
     },
     lineTotal: {
         type: Number,
