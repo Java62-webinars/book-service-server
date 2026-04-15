@@ -1,10 +1,9 @@
-import mongose from 'mongoose';
 import mongoose from "mongoose";
 
 
-const roundMoney = (value) => Number(value.toFixed(2));
+//const roundMoney = (value) => Number(value.toFixed(2));
 
-const orderBuyerSchema = new mongose.Schema({
+const orderBuyerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -21,11 +20,11 @@ const orderBuyerSchema = new mongose.Schema({
     timestamps: false
 });
 
-const orderItemSchema = new mongose.Schema({
+const orderItemSchema = new mongoose.Schema({
     isbn: {
         type: String,
         required: true,
-        unique: true,
+ //       unique: true, //WRONG
         trim: true,
         minLength: 10,
         maxlength: 13,
@@ -58,7 +57,7 @@ const orderItemSchema = new mongose.Schema({
     versionKey: false,
 })
 
-const orderSummarySchema = new mongose.Schema({
+const orderSummarySchema = new mongoose.Schema({
     subtotal: {
         type: Number,
         required: true,
@@ -74,7 +73,7 @@ const orderSummarySchema = new mongose.Schema({
     versionKey: false,
 })
 
-const orderSchema = new mongose.Schema({
+const orderSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         required: true,
