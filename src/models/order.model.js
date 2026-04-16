@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 
 
-//const roundMoney = (value) => Number(value.toFixed(2));
-
 const orderBuyerSchema = new mongoose.Schema({
     name: {
         type: String,

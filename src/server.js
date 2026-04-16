@@ -1,24 +1,25 @@
 import express from 'express';
 import mongoose from "mongoose";
 import config from "./configuration/config.js";
-import postRoutes from "./routes/books.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
 import DatabaseConnectionError from "./errors/DatabaseConnectionError.js";
 import {setDbConnectionError} from "./state/db.state.js";
 import dbGuard from "./middlewares/db-guard.middleware.js";
 import booksRoutes from "./routes/books.routes.js";
-import orderRoutes from "./routes/orders.routes.js";
+//import orderRoutes from "./routes/orders.routes.js";
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({ origin: 'http://localhost:5173'}));
 app.get('/health', (req, res) => {
     res.json({ status: "server online",
     database: mongoose.connection.readyState === 1 ? "connected" : "disconnected" });
 })
 app.use(dbGuard);
 app.use('/book-shop', booksRoutes);
-app.use('/book-shop', orderRoutes)
+// app.use('/book-shop', orderRoutes)
 
 app.use(errorHandler)
 

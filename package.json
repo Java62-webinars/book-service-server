@@ -1,7 +1,7 @@
 {
-  "name": "forum-service",
+  "name": "book-service",
   "version": "1.0.0",
-  "description": "forum web service",
+  "description": "book web service",
   "type": "module",
   "scripts": {
     "start": "cross-env PORT=8000 node src/server.js",
@@ -12,6 +12,7 @@
   "author": "Edward",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.6",
     "cross-env": "^10.1.0",
     "express": "^5.2.1",
     "joi": "^18.0.2",
